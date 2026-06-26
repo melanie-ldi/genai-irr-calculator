@@ -11,7 +11,7 @@ Learning Data Insights · GenAI Evidence Hub
 
 A self-contained, browser-based application for computing inter-rater reliability (IRR) on systematic literature review coding sheets. No installation, no server, no dependencies — open `irr_calculator.html` in any modern browser and it works immediately.
 
-Built for the [GenAI Evidence Hub](https://learningdatainsights.com), a systematic literature review project tracking generative AI use in educational assessment across three evidence domains: Automated Scoring, Item Generation, and Formative Feedback.
+Built for the [GenAI Evidence Hub](https://www.learningdatainsights.com/our-projects/genai-evidence-hub), a systematic literature review project tracking generative AI use in educational assessment across three evidence domains: Automated Scoring, Item Generation, and Formative Feedback.
 
 **Created by Melanie Kurimchak** in collaboration with Claude Sonnet 4.6 (Anthropic). Melanie conceived the tool, defined all requirements, tested functionality, and directed development through iterative feedback.
 
