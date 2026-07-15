@@ -57,12 +57,6 @@
   header h1 { font-size: 17px; font-weight: 700; letter-spacing: -.3px; }
   header p  { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
   .header-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
-  .badge {
-    font-family: var(--mono); font-size: 11px;
-    padding: 3px 10px; border-radius: 100px;
-    border: 1px solid var(--border-bright); color: var(--text-dim);
-  }
-
   .app-body {
     display: grid;
     grid-template-columns: 340px 1fr;
@@ -162,11 +156,6 @@
   }
   select:focus, input[type=text]:focus { border-color: var(--accent); }
   select option { background: var(--surface3); }
-  .select-wrapper { position: relative; }
-  .select-wrapper::after {
-    content: '▾'; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-    color: var(--text-faint); pointer-events: none; font-size: 11px;
-  }
   .ctrl-row { margin-bottom: 12px; }
 
   /* Col picker */
@@ -205,35 +194,7 @@
     background: var(--surface2); color: var(--text-faint);
     border: 1px solid var(--border); cursor: default;
   }
-  .col-type-badge.nom { color: #60a5fa; border-color: #60a5fa33; }
-  .col-type-badge.ord { color: #a78bfa; border-color: #a78bfa33; }
-  .col-type-badge.int { color: #34d399; border-color: #34d39933; }
   .col-type-badge.fre { color: var(--warn); border-color: #f59e0b44; }
-
-  .col-type-selector { display: none; margin-top: 2px; padding: 3px 0 3px 24px; }
-  .col-type-selector.visible { display: flex; gap: 5px; }
-  .type-btn {
-    font-family: var(--mono); font-size: 10px; padding: 2px 8px;
-    border-radius: 100px; border: 1px solid var(--border);
-    background: transparent; color: var(--text-dim); cursor: pointer; transition: all .12s;
-  }
-  .type-btn.active-nom { background: #60a5fa22; border-color: #60a5fa; color: #60a5fa; }
-  .type-btn.active-ord { background: #a78bfa22; border-color: #a78bfa; color: #a78bfa; }
-  .type-btn.active-int { background: #34d39922; border-color: #34d399; color: #34d399; }
-
-  /* Metrics */
-  .metric-list { display: flex; flex-direction: column; gap: 7px; }
-  .metric-item {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 9px 12px; background: var(--surface3);
-    border: 1px solid var(--border); border-radius: 8px;
-    cursor: pointer; transition: all .15s; user-select: none;
-  }
-  .metric-item:hover { border-color: var(--border-bright); }
-  .metric-item.selected { border-color: var(--accent); background: rgba(107,138,253,.08); }
-  .metric-item input[type=checkbox] { accent-color: var(--accent); margin-top: 1px; flex-shrink: 0; }
-  .metric-name { font-size: 12px; font-weight: 600; }
-  .metric-desc { font-size: 10px; color: var(--text-faint); font-family: var(--mono); margin-top: 2px; }
 
   /* Coder filter */
   .coder-filter-toggle {
@@ -300,10 +261,6 @@
   .metric-block-title { font-size: 15px; font-weight: 700; }
   .metric-block-sub { font-family: var(--mono); font-size: 11px; color: var(--text-faint); margin-left: auto; }
 
-  .score-row {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1px; background: var(--border);
-  }
   .score-cell { background: var(--surface2); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
   .score-value { font-family: var(--mono); font-size: 26px; font-weight: 500; line-height: 1; }
   .score-value.good { color: var(--accent3); }
@@ -336,13 +293,6 @@
   .section-header .pill {
     font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 100px;
     background: var(--surface3); color: var(--text-faint); border: 1px solid var(--border);
-  }
-
-  .pair-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 100px;
-    background: rgba(107,138,253,.12); color: var(--accent);
-    border: 1px solid rgba(107,138,253,.25); white-space: nowrap;
   }
 
   .info-tooltip {
@@ -520,71 +470,6 @@
   .rq-sub-inner td { padding: 7px 14px 7px 48px !important; font-size: 10px; border-bottom: 1px solid rgba(46,53,79,.4); }
   .rq-sub-inner tr:last-child td { border-bottom: none; }
   .rq-sub-inner tbody tr:hover td { background: rgba(255,255,255,.01); }
-
-  .paper-row { cursor: pointer; }
-  .paper-row:hover td { background: rgba(107,138,253,.06) !important; }
-  .paper-row td:first-child::before {
-    content: '▶';
-    display: inline-block;
-    font-size: 9px;
-    margin-right: 8px;
-    color: var(--text-faint);
-    transition: transform .2s;
-  }
-  .paper-row.expanded td:first-child::before { transform: rotate(90deg); color: var(--accent); }
-
-  .rq-expand-row { display: none; }
-  .rq-expand-row.visible { display: table-row; }
-  .rq-expand-cell {
-    padding: 0 !important;
-    border-bottom: 1px solid var(--border) !important;
-  }
-  .rq-inner {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 0;
-  }
-  .rq-inner-header {
-    padding: 8px 16px 6px;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--text-faint);
-    letter-spacing: .8px;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface3);
-  }
-  .rq-inner table { background: var(--bg); }
-  .rq-inner thead tr { background: var(--surface2); }
-  .rq-inner th {
-    padding: 7px 14px;
-    font-size: 10px;
-    color: var(--text-faint);
-  }
-  .rq-inner td {
-    padding: 7px 14px;
-    font-size: 11px;
-    border-bottom: 1px solid rgba(46,53,79,.5);
-  }
-  .rq-inner tr:last-child td { border-bottom: none; }
-  .rq-inner tbody tr:hover td { background: rgba(255,255,255,.015); }
-
-  /* variable-summary section toggle */
-  .section-toggle-header {
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px; font-weight: 600; color: var(--text-dim);
-    letter-spacing: .3px; display: flex; align-items: center; gap: 8px;
-    cursor: pointer; user-select: none; transition: background .15s;
-  }
-  .section-toggle-header:hover { background: rgba(255,255,255,.02); }
-  .section-toggle-header .toggle-arrow {
-    margin-left: auto; font-size: 10px; color: var(--text-faint); transition: transform .2s;
-  }
-  .section-toggle-header.open .toggle-arrow { transform: rotate(180deg); }
-  .section-toggle-body { display: none; }
-  .section-toggle-body.open { display: block; }
 </style>
 </head>
 <body>
@@ -654,7 +539,7 @@
 
       <div class="ctrl-row">
         <label class="ctrl-label">IRR columns
-          <span style="color:var(--text-faint)"> — click ✓ to toggle, badge to set data type</span>
+          <span style="color:var(--text-faint)"> — click ✓ to include/exclude</span>
         </label>
         <div class="col-picker-header">
           <span class="col-picker-count" id="pickerCount">0 selected</span>
@@ -676,42 +561,7 @@
       <div class="coder-multi" id="coderMulti"></div>
     </div>
 
-    <!-- 05 Metrics -->
-    <div class="sidebar-section" id="metricSection" style="display:none;">
-      <div class="section-label">05 — Select Metrics</div>
-      <div class="metric-list">
-        <label class="metric-item selected">
-          <input type="checkbox" checked data-metric="alpha">
-          <div>
-            <div class="metric-name">Krippendorff's Alpha</div>
-            <div class="metric-desc">nom · ord · int · ratio</div>
-          </div>
-        </label>
-        <label class="metric-item selected">
-          <input type="checkbox" checked data-metric="pairwise">
-          <div>
-            <div class="metric-name">Pairwise % Agreement</div>
-            <div class="metric-desc">all data types · exact match</div>
-          </div>
-        </label>
-        <label class="metric-item selected">
-          <input type="checkbox" checked data-metric="cohen">
-          <div>
-            <div class="metric-name">Cohen's Kappa</div>
-            <div class="metric-desc">exactly 2 coders · nominal</div>
-          </div>
-        </label>
-        <label class="metric-item selected">
-          <input type="checkbox" checked data-metric="fleiss">
-          <div>
-            <div class="metric-name">Fleiss' Kappa</div>
-            <div class="metric-desc">3+ coders · nominal</div>
-          </div>
-        </label>
-      </div>
-    </div>
-
-    <!-- 06 Run -->
+    <!-- 05 Run -->
     <div class="sidebar-section" id="runSection" style="display:none;">
       <button class="run-btn" id="runBtn">Calculate IRR</button>
     </div>
@@ -785,9 +635,15 @@ const SHEET_VERSIONS = {
   },
   ig: {
     name: 'Item Generation',
-    signature: ['Metric1-analysis type','Metric1-category','Bias / Equity Evaluated'],
+    // v0.0.7 field names (confirmed against coding_spreadsheet_template__AIG
+    // Feature Descriptions, "Used for IRR?" column, cross-checked against the
+    // v0.0.7 rename log): "Fairness acknowledged" -> "Bias/Fairness acknowledged",
+    // "Bias / Fairness Evaluated" -> "Bias / Fairness Type". Column matching
+    // elsewhere in the tool is whitespace-tolerant, so header-only quirks
+    // (e.g. a trailing space on "Domain") don't require a version bump here.
+    signature: ['Metric1-analysis type','Metric1-category','Bias / Fairness Type'],
     cols: [
-      'Domain','AI Innovation','Fairness acknowledged','Bias / Equity Evaluated',
+      'Domain','AI Innovation','Bias/Fairness acknowledged','Bias / Fairness Type',
       'Research Question','Total number of models tested','Tested LLM Model & Version Used',
       'Tested Model & Techniques List','Baselines tested','Baseline list','Prompting techniques',
       'Metric1-analysis type','Metric1-category','Metric1-type','Metric1-assessment tool',
@@ -844,8 +700,210 @@ const SHEET_VERSIONS = {
   },
   ff: {
     name: 'Formative Feedback',
-    signature: [],
-    cols: []
+    // v0.0.7 field names, confirmed against coding_spreadsheet_template__FF
+    // Feature Descriptions ("Used for IRR?" column), with the same
+    // "Fairness acknowledged" -> "Bias/Fairness acknowledged" and
+    // "Bias / Fairness Evaluated" -> "Bias / Fairness Type" renames applied
+    // as Item Generation (shared fairness/bias infrastructure, same v0.0.7
+    // rename log). Note: unlike Item Generation, this domain's template
+    // marks "Metric{n}-Additional evaluation method notes" as used for IRR
+    // -- it's still treated as free text here (paraphrase-prone narrative,
+    // same reasoning as the other excluded description fields), which is
+    // worth flagging back to Aaron rather than silently deciding either way.
+    signature: ['Metric1-analysis type','Metric1-category','Bias / Fairness Type'],
+    cols: [
+      'Domain',
+      'AI Innovation',
+      'Bias/Fairness acknowledged',
+      'Bias / Fairness Type',
+      'Research Question',
+      'Total number of models tested',
+      'Tested LLM Model & Version Used',
+      'Tested Model & Techniques List',
+      'Baselines tested',
+      'Baseline list',
+      'Prompting techniques',
+      'Metric1-analysis type',
+      'Metric1-category',
+      'Metric1-type',
+      'Metric1-assessment tool',
+      'Metric1-truth',
+      'Metric1-min source',
+      'Metric1-min',
+      'Metric1-max source',
+      'Metric1-max',
+      'Metric1-min baseline',
+      'Metric1-min baseline value',
+      'Metric1-min baseline difference',
+      'Metric1-min baseline significant',
+      'Metric1-max baseline',
+      'Metric1-max baseline value',
+      'Metric1-max baseline difference',
+      'Metric1-max baseline significant',
+      'Metric1-Additional evaluation method notes',
+      'Metric2-analysis type',
+      'Metric2-category',
+      'Metric2-type',
+      'Metric2-assessment tool',
+      'Metric2-truth',
+      'Metric2-min source',
+      'Metric2-min',
+      'Metric2-max source',
+      'Metric2-max',
+      'Metric2-min baseline',
+      'Metric2-min baseline value',
+      'Metric2-min baseline difference',
+      'Metric2-min baseline significant',
+      'Metric2-max baseline',
+      'Metric2-max baseline value',
+      'Metric2-max baseline difference',
+      'Metric2-max baseline significant',
+      'Metric2-Additional evaluation method notes',
+      'Metric3-analysis type',
+      'Metric3-category',
+      'Metric3-type',
+      'Metric3-assessment tool',
+      'Metric3-truth',
+      'Metric3-min source',
+      'Metric3-min',
+      'Metric3-max source',
+      'Metric3-max',
+      'Metric3-min baseline',
+      'Metric3-min baseline value',
+      'Metric3-min baseline difference',
+      'Metric3-min baseline significant',
+      'Metric3-max baseline',
+      'Metric3-max baseline value',
+      'Metric3-max baseline difference',
+      'Metric3-max baseline significant',
+      'Metric3-Additional evaluation method notes',
+      'Metric4-analysis type',
+      'Metric4-category',
+      'Metric4-type',
+      'Metric4-assessment tool',
+      'Metric4-truth',
+      'Metric4-min source',
+      'Metric4-min',
+      'Metric4-max source',
+      'Metric4-max',
+      'Metric4-min baseline',
+      'Metric4-min baseline value',
+      'Metric4-min baseline difference',
+      'Metric4-min baseline significant',
+      'Metric4-max baseline',
+      'Metric4-max baseline value',
+      'Metric4-max baseline difference',
+      'Metric4-max baseline significant',
+      'Metric4-Additional evaluation method notes',
+      'Metric5-analysis type',
+      'Metric5-category',
+      'Metric5-type',
+      'Metric5-assessment tool',
+      'Metric5-truth',
+      'Metric5-min source',
+      'Metric5-min',
+      'Metric5-max source',
+      'Metric5-max',
+      'Metric5-min baseline',
+      'Metric5-min baseline value',
+      'Metric5-min baseline difference',
+      'Metric5-min baseline significant',
+      'Metric5-max baseline',
+      'Metric5-max baseline value',
+      'Metric5-max baseline difference',
+      'Metric5-max baseline significant',
+      'Metric5-Additional evaluation method notes',
+      'Metric6-analysis type',
+      'Metric6-category',
+      'Metric6-type',
+      'Metric6-assessment tool',
+      'Metric6-truth',
+      'Metric6-min source',
+      'Metric6-min',
+      'Metric6-max source',
+      'Metric6-max',
+      'Metric6-min baseline',
+      'Metric6-min baseline value',
+      'Metric6-min baseline difference',
+      'Metric6-min baseline significant',
+      'Metric6-max baseline',
+      'Metric6-max baseline value',
+      'Metric6-max baseline difference',
+      'Metric6-max baseline significant',
+      'Metric6-Additional evaluation method notes',
+      'Metric7-analysis type',
+      'Metric7-category',
+      'Metric7-type',
+      'Metric7-assessment tool',
+      'Metric7-truth',
+      'Metric7-min source',
+      'Metric7-min',
+      'Metric7-max source',
+      'Metric7-max',
+      'Metric7-min baseline',
+      'Metric7-min baseline value',
+      'Metric7-min baseline difference',
+      'Metric7-min baseline significant',
+      'Metric7-max baseline',
+      'Metric7-max baseline value',
+      'Metric7-max baseline difference',
+      'Metric7-max baseline significant',
+      'Metric7-Additional evaluation method notes',
+      'Metric8-analysis type',
+      'Metric8-category',
+      'Metric8-type',
+      'Metric8-assessment tool',
+      'Metric8-truth',
+      'Metric8-min source',
+      'Metric8-min',
+      'Metric8-max source',
+      'Metric8-max',
+      'Metric8-min baseline',
+      'Metric8-min baseline value',
+      'Metric8-min baseline difference',
+      'Metric8-min baseline significant',
+      'Metric8-max baseline',
+      'Metric8-max baseline value',
+      'Metric8-max baseline difference',
+      'Metric8-max baseline significant',
+      'Metric8-Additional evaluation method notes',
+      'Metric9-analysis type',
+      'Metric9-category',
+      'Metric9-type',
+      'Metric9-assessment tool',
+      'Metric9-truth',
+      'Metric9-min source',
+      'Metric9-min',
+      'Metric9-max source',
+      'Metric9-max',
+      'Metric9-min baseline',
+      'Metric9-min baseline value',
+      'Metric9-min baseline difference',
+      'Metric9-min baseline significant',
+      'Metric9-max baseline',
+      'Metric9-max baseline value',
+      'Metric9-max baseline difference',
+      'Metric9-max baseline significant',
+      'Metric9-Additional evaluation method notes',
+      'Metric10-analysis type',
+      'Metric10-category',
+      'Metric10-type',
+      'Metric10-assessment tool',
+      'Metric10-truth',
+      'Metric10-min source',
+      'Metric10-min',
+      'Metric10-max source',
+      'Metric10-max',
+      'Metric10-min baseline',
+      'Metric10-min baseline value',
+      'Metric10-min baseline difference',
+      'Metric10-min baseline significant',
+      'Metric10-max baseline',
+      'Metric10-max baseline value',
+      'Metric10-max baseline difference',
+      'Metric10-max baseline significant',
+      'Metric10-Additional evaluation method notes'
+    ]
   }
 };
 
@@ -854,7 +912,6 @@ const SHEET_VERSIONS = {
 // ═══════════════════════════════════════════
 let rawData = [];
 let allColumns = [];
-let colTypes = {};
 let selectedCols = new Set();
 let lastResults = null;
 let activeVersion = null; // 'as' | 'ig' | 'ff' | null
@@ -908,8 +965,6 @@ function detectDelim(text) {
 function loadData(data, filename) {
   rawData = data;
   allColumns = Object.keys(data[0] || {});
-  colTypes = {};
-  allColumns.forEach(c => { colTypes[c] = guessType(data, c); });
 
   dropZone.classList.add('file-loaded');
   document.getElementById('dropIcon').textContent = '✅';
@@ -927,27 +982,28 @@ function loadData(data, filename) {
   applyVersionAndRebuild(detected || 'as');
 
   document.getElementById('coderSection').style.display = '';
-  document.getElementById('metricSection').style.display = '';
   document.getElementById('runSection').style.display = '';
-}
-
-function guessType(data, col) {
-  const vals = data.map(r => r[col]).filter(v => v !== '' && v != null);
-  const nums = vals.filter(v => !isNaN(Number(v)));
-  if (nums.length > 0 && nums.length === vals.length) return 'interval';
-  return 'nominal';
 }
 
 // ═══════════════════════════════════════════
 // VERSION DETECTION & SELECTION
 // ═══════════════════════════════════════════
+
+// Column names drift over time (renames, and stray leading/trailing spaces
+// like "Domain " or "Metric1-min baseline " seen in real exports). Every
+// comparison against a SHEET_VERSIONS column list goes through this
+// normalizer so a header-only quirk doesn't silently fail to match.
+function normColName(c) {
+  return (c || '').trim().toLowerCase();
+}
+
 function detectVersion(cols) {
-  const colSet = new Set(cols);
+  const colSet = new Set(cols.map(normColName));
   // Score each version by signature matches
   let best = null, bestScore = 0;
   for (const [key, def] of Object.entries(SHEET_VERSIONS)) {
     if (!def.signature.length) continue;
-    const score = def.signature.filter(s => colSet.has(s)).length;
+    const score = def.signature.filter(s => colSet.has(normColName(s))).length;
     if (score > bestScore) { bestScore = score; best = key; }
   }
   return best;
@@ -1011,9 +1067,9 @@ function buildColPicker(versionKey) {
   const coderCol = FIXED_CODER_COL;
   const exclude = new Set([paperCol, coderCol]);
 
-  // Determine which cols to pre-select
+  // Determine which cols to pre-select (whitespace/case-tolerant, see normColName)
   const versionCols = versionKey && SHEET_VERSIONS[versionKey]
-    ? new Set(SHEET_VERSIONS[versionKey].cols) : new Set();
+    ? new Set(SHEET_VERSIONS[versionKey].cols.map(normColName)) : new Set();
 
   // Filter: only pre-check cols that are in the version definition AND present in the file
   // AND: for metric columns, only if at least one coder has a non-empty value
@@ -1024,54 +1080,31 @@ function buildColPicker(versionKey) {
   selectedCols.clear();
 
   allColumns.filter(c => !exclude.has(c)).forEach(c => {
-    const type = colTypes[c] || 'nominal';
     const ft = isFreeText(c);
     const isMetricColFlag = /^Metric\d+-/.test(c);
-    const shouldPreCheck = versionCols.has(c) &&
-      (!isMetricColFlag || metricsWithData.has(c)) &&
+    const shouldPreCheck = versionCols.has(normColName(c)) &&
+      (!isMetricColFlag || metricsWithData.has(normColName(c))) &&
       !ft; // free-text fields shown but not pre-checked
 
     const wrap = document.createElement('div');
 
     const item = document.createElement('label');
     item.className = 'col-item';
-    const badgeClass = ft ? 'fre' : type.slice(0,3);
-    const badgeText = ft ? '⚠ free-text' : type.slice(0,3).toUpperCase();
     item.innerHTML = `
       <input type="checkbox" class="col-check" data-col="${esc(c)}" ${shouldPreCheck ? 'checked' : ''}>
       <span class="col-name" title="${esc(c)}">${c.length > 28 ? c.slice(0,26)+'…' : c}</span>
-      <span class="col-type-badge ${badgeClass}">${badgeText}</span>
+      ${ft ? `<span class="col-type-badge fre">⚠ free-text</span>` : ''}
     `;
-
-    const typeRow = document.createElement('div');
-    typeRow.className = `col-type-selector${shouldPreCheck ? ' visible' : ''}`;
-    if (!ft) {
-      ['nominal','ordinal','interval'].forEach(t => {
-        const btn = document.createElement('button');
-        btn.className = `type-btn ${type === t ? 'active-'+t.slice(0,3) : ''}`;
-        btn.textContent = t; btn.dataset.type = t;
-        btn.addEventListener('click', e => {
-          e.preventDefault();
-          colTypes[c] = t;
-          typeRow.querySelectorAll('.type-btn').forEach(b => {
-            b.className = `type-btn ${b.dataset.type === t ? 'active-'+t.slice(0,3) : ''}`;
-          });
-          item.querySelector('.col-type-badge').className = `col-type-badge ${t.slice(0,3)}`;
-          item.querySelector('.col-type-badge').textContent = t.slice(0,3).toUpperCase();
-        });
-        typeRow.appendChild(btn);
-      });
-    }
 
     if (shouldPreCheck) selectedCols.add(c);
 
     item.querySelector('.col-check').addEventListener('change', function() {
-      if (this.checked) { selectedCols.add(c); if (!ft) typeRow.classList.add('visible'); }
-      else { selectedCols.delete(c); typeRow.classList.remove('visible'); }
+      if (this.checked) selectedCols.add(c);
+      else selectedCols.delete(c);
       updatePickerCount();
     });
 
-    wrap.appendChild(item); wrap.appendChild(typeRow); picker.appendChild(wrap);
+    wrap.appendChild(item); picker.appendChild(wrap);
   });
 
   updatePickerCount();
@@ -1083,17 +1116,26 @@ function getMetricColsWithData(versionKey, coderCol, paperCol) {
   const vDef = SHEET_VERSIONS[versionKey];
   if (!vDef) return result;
 
+  // Resolve each version-defined column name to whatever the real header
+  // actually is (whitespace/case-tolerant), since real exports sometimes
+  // have stray spaces (e.g. "Metric1-min baseline "). An exact-key lookup
+  // against such a header would silently read undefined and mark a
+  // genuinely populated column as empty.
+  const realColByNorm = new Map();
+  allColumns.forEach(c => realColByNorm.set(normColName(c), c));
+
   vDef.cols.forEach(col => {
     if (!/^Metric\d+-/.test(col)) {
-      result.add(col); // always include non-metric cols
+      result.add(normColName(col)); // always include non-metric cols
       return;
     }
+    const realCol = realColByNorm.get(normColName(col)) || col;
     // Check if any row has a non-empty value
     const hasData = rawData.some(row => {
-      const v = row[col];
+      const v = row[realCol];
       return v !== undefined && v !== null && String(v).trim() !== '';
     });
-    if (hasData) result.add(col);
+    if (hasData) result.add(normColName(col));
   });
 
   return result;
@@ -1134,27 +1176,16 @@ function buildCoderList() {
 function esc(s) { return String(s).replace(/"/g,'&quot;'); }
 
 // ═══════════════════════════════════════════
-// METRIC UI
-// ═══════════════════════════════════════════
-document.querySelectorAll('.metric-item').forEach(item => {
-  item.addEventListener('change', () => {
-    item.classList.toggle('selected', item.querySelector('input').checked);
-  });
-});
-
-// ═══════════════════════════════════════════
 // RUN
 // ═══════════════════════════════════════════
 document.getElementById('runBtn').addEventListener('click', () => {
   const paperCol = FIXED_PAPER_COL;
   const coderCol = FIXED_CODER_COL;
   const cols = [...selectedCols];
-  const metrics = getSelectedMetrics();
 
   const errors = [];
   if (cols.length === 0) errors.push('Please select at least one coding column.');
-  if (metrics.length === 0) errors.push('Please select at least one metric.');
-  if (errors.length) { showResults(null, errors, []); return; }
+  if (errors.length) { showResults(null, errors); return; }
 
   // Build allowed coder set from filter
   let allowedCoders = null;
@@ -1163,29 +1194,17 @@ document.getElementById('runBtn').addEventListener('click', () => {
     allowedCoders = new Set([...document.querySelectorAll('.coder-check:checked')].map(el => el.value));
   }
 
-  // Build flat records list — the canonical data structure for all IRR
-  const allRecords = buildRecords(rawData, paperCol, coderCol, cols, allowedCoders);
+  // Build flat records list — the canonical data structure for all IRR —
+  // then realign metric slots by content (see realignMetricRecords) before
+  // anything gets grouped or compared.
+  const allRecords = realignMetricRecords(buildRecords(rawData, paperCol, coderCol, cols, allowedCoders));
 
   // Derive papers (RQ IDs) and coders from records
   const papers = [...new Set(allRecords.map(r => r.rq))].sort();
   const coders = [...new Set(allRecords.map(r => r.coder))].sort();
-  const nCoders = coders.length;
 
   // Detect free-text columns that are selected — warn user
   const freetextSelected = cols.filter(c => isFreeText(c));
-
-  const metricErrors = {}, metricWarnings = {};
-  metrics.forEach(m => {
-    metricErrors[m] = []; metricWarnings[m] = [];
-    if (m === 'cohen' && nCoders !== 2)
-      metricErrors[m].push(`Cohen's Kappa requires exactly 2 coders. Found ${nCoders}: ${coders.join(', ')}.`);
-    if (m === 'fleiss' && nCoders < 3)
-      metricErrors[m].push(`Fleiss' Kappa requires 3+ coders. Found ${nCoders}.`);
-    if (m === 'pairwise') {
-      const nP = (nCoders*(nCoders-1))/2;
-      if (nP > 45) metricWarnings[m].push(`${nCoders} coders → ${nP} pairs. Displaying aggregated results.`);
-    }
-  });
 
   // ── Derive paper→RQ mapping and labels ──
   const PAPER_ID_COL = 'Paper ID';
@@ -1229,10 +1248,6 @@ document.getElementById('runBtn').addEventListener('click', () => {
       pairs.push([coders[i], coders[j]]);
   const pk = (c1, c2) => `${c1} × ${c2}`;
 
-  // ── Overall alpha (all coders) for left summary card ──
-  const overallAlpha = (!metricErrors['alpha'] || !metricErrors['alpha'].length)
-    ? krippendorffAlphaPooled(allRecords) : null;
-
   // Helper: does a pair share at least one (paper, rq, field) unit?
   function pairHasOverlap(c1, c2, records) {
     const c1units = new Set(records.filter(r=>r.coder===c1).map(r=>`${r.paper}\x00${r.rq}\x00${r.field}`));
@@ -1247,8 +1262,17 @@ document.getElementById('runBtn').addEventListener('click', () => {
   activePairs.forEach(([c1,c2]) => {
     const key = pk(c1,c2);
     const pr = allRecords.filter(r => r.coder===c1 || r.coder===c2);
-    pairResults[key] = krippendorffAlphaPooled(pr);
+    pairResults[key] = krippendorffAlpha(pr);
   });
+
+  // ── Overall alpha: simple average of the per-pair alphas above ──
+  // Deliberately NOT a single pooled calculation across all records — each
+  // pair counts equally regardless of how many RQs it contributed, per how
+  // this figure is actually used and reported.
+  const pairAlphaValues = activePairs.map(([c1,c2]) => pairResults[pk(c1,c2)]).filter(v => v !== null);
+  const overallAlpha = pairAlphaValues.length
+    ? pairAlphaValues.reduce((a,b) => a+b, 0) / pairAlphaValues.length
+    : null;
 
   // ── Pair × Paper alpha — only papers where both coders have overlapping units ──
   const pairPaperResults = {};
@@ -1260,7 +1284,7 @@ document.getElementById('runBtn').addEventListener('click', () => {
       // Only include if both coders have at least one overlapping unit on this paper
       const c1units = new Set(pr.filter(r=>r.coder===c1).map(r=>`${r.rq}\x00${r.field}`));
       const bothPresent = pr.some(r => r.coder===c2 && c1units.has(`${r.rq}\x00${r.field}`));
-      if (bothPresent) pairPaperResults[key][pNum] = krippendorffAlphaPooled(pr);
+      if (bothPresent) pairPaperResults[key][pNum] = krippendorffAlpha(pr);
     });
   });
 
@@ -1277,52 +1301,23 @@ document.getElementById('runBtn').addEventListener('click', () => {
         const pr = allRecords.filter(r => r.paper===pNum && r.rq===rqId && (r.coder===c1||r.coder===c2));
         const c1units = new Set(pr.filter(r=>r.coder===c1).map(r=>r.field));
         const bothPresent = pr.some(r => r.coder===c2 && c1units.has(r.field));
-        if (bothPresent) pairPaperRQResults[key][pNum][rqId] = krippendorffAlphaPooled(pr);
+        if (bothPresent) pairPaperRQResults[key][pNum][rqId] = krippendorffAlpha(pr);
       });
     });
   });
 
   lastResults = {
-    overallAlpha, pairs: activePairs, pairResults, pairPaperResults, pairPaperRQResults,
+    overallAlpha, pairs: activePairs,
+    pairResults,
+    pairPaperResults,
+    pairPaperRQResults,
     paperNums, paperNumToRQs, paperGroupTitle, paperGroupTitleFull,
     rqLabelMap, rqLabelFull,
-    cols, papers, coders, metrics, metricErrors, metricWarnings,
+    cols, papers, coders,
     allRecords, freetextSelected
   };
-  showResults(lastResults, [], []);
+  showResults(lastResults, []);
 });
-
-function getSelectedMetrics() {
-  return [...document.querySelectorAll('[data-metric]')].filter(el => el.checked).map(el => el.dataset.metric);
-}
-
-// ═══════════════════════════════════════════
-// DATA PARSING
-// ═══════════════════════════════════════════
-function parseLong(data, paperCol, coderCol, cols) {
-  const wide = {};
-  data.forEach(row => {
-    const pid = String(row[paperCol]);
-    const cid = String(row[coderCol]);
-    if (!wide[pid]) wide[pid] = {};
-    if (!wide[pid][cid]) wide[pid][cid] = {};
-    cols.forEach(c => { wide[pid][cid][c] = row[c]; });
-  });
-  return wide;
-}
-
-function parseWide(data, paperCol, cols) {
-  const wide = {};
-  data.forEach(row => {
-    const pid = String(row[paperCol]);
-    if (!wide[pid]) wide[pid] = {};
-    cols.forEach(c => {
-      if (!wide[pid][c]) wide[pid][c] = {};
-      wide[pid][c][c] = row[c];
-    });
-  });
-  return wide;
-}
 
 // ═══════════════════════════════════════════
 // VALUE NORMALIZATION
@@ -1336,11 +1331,40 @@ const FREETEXT_FIELDS = new Set([
   'baseline list',
 ]);
 
+// Per-metric free-text fields (Metric1-evaluation results, Metric2-Additional
+// evaluation method notes, etc., for any metric number). Confirmed against
+// Aaron's 6/18 coding sheet: his own "columns used for IRR" copy (A2:EU2 on
+// the MB-CS tab) contains none of these for any metric slot — he excludes
+// them entirely before calculating alpha, so the tool does too.
+//
+// min source / max source / min baseline / max baseline are also included:
+// these hold a description of where a number came from (e.g. "KNN(all
+// without subtopic)" vs. "KNN-all~T", or "Neuroticism subscale" vs.
+// "neuroticism"), and Aaron's own designation rows repeatedly score these as
+// agreement despite completely different wording — he's judging whether they
+// refer to the same underlying thing, not comparing strings. That's a
+// paraphrase judgment no exact-match tool can replicate, so these are
+// excluded rather than let them manufacture disagreements Aaron never made.
+// Note: this intentionally does NOT match "...baseline value",
+// "...baseline difference", or "...baseline significant" — those hold the
+// actual numbers/verdicts, not a description, and are compared normally.
+const FREETEXT_METRIC_PATTERN = /^metric\d+-(evaluation results|additional evaluation method notes|min source|max source|min baseline|max baseline)$/i;
+
 // Tokens treated as missing
-const MISSING_TOKENS = new Set(['', 'n/a', 'na', 'none', '-', '--', 'n.a.', 'tbd', '?']);
+const MISSING_TOKENS = new Set(['', 'n/a', 'na', 'none', '-', '--', 'n.a.', 'tbd', '?', '#value!', '#n/a', '#ref!', '#div/0!']);
+
+// Sentinel for "this coder left the field blank." Confirmed against Aaron's
+// actual 1/0 designation rows (not just the yellow highlighting) on the 6/18
+// sheet: when one coder filled in a field and the other left it truly blank,
+// every one of that field's cells is scored 1 vs 0 — a real disagreement, not
+// excluded as missing data. Only when BOTH coders leave a field blank (e.g. a
+// metric slot that simply doesn't apply to the paper) is the unit excluded —
+// see the pruning step in groupIntoUnits below.
+const MISSING_SENTINEL = '\x00MISSING\x00';
 
 function isFreeText(colName) {
-  return FREETEXT_FIELDS.has(colName.trim().toLowerCase());
+  const c = colName.trim().toLowerCase();
+  return FREETEXT_FIELDS.has(c) || FREETEXT_METRIC_PATTERN.test(c);
 }
 
 function isNumericCol(colName) {
@@ -1405,8 +1429,7 @@ function buildRecords(rawData, paperCol, coderCol, cols, allowedCoders) {
     cols.forEach(col => {
       const raw = row[col];
       const value = normalizeValue(raw, col);
-      if (value === null) return; // skip missing
-      records.push({ paper: paperId, rq: rqId, field: col, coder, value });
+      records.push({ paper: paperId, rq: rqId, field: col, coder, value: value === null ? MISSING_SENTINEL : value });
     });
   });
 
@@ -1414,24 +1437,226 @@ function buildRecords(rawData, paperCol, coderCol, cols, allowedCoders) {
 }
 
 // ═══════════════════════════════════════════
+// METRIC REALIGNMENT
+// ═══════════════════════════════════════════
+// Aaron realigns metrics by content before comparing them by hand — Chris's
+// "Metric1" and Maggie's "Metric3" might describe the same underlying
+// measurement, and the slot number is arbitrary. Comparing Metric1-to-Metric1
+// by position (as this tool did before) creates false disagreements whenever
+// two coders simply listed the same metrics in a different order. This step
+// re-pairs each RQ's metrics across its two coders by content similarity
+// before any field-level comparison happens, confirmed against real examples
+// from the 6/18 sheet:
+//   - A metric with no counterpart on the other side: every one of its
+//     sub-fields counts as a disagreement, regardless of what's actually in
+//     them — even a sub-field that's blank on the "found" side still
+//     disagrees against the other coder's total absence.
+//   - A metric matched to a counterpart: compared sub-field by sub-field,
+//     with blank / N/A / #VALUE! all treated as one "nothing here" bucket —
+//     bucket-vs-bucket is an agreement, bucket-vs-real-value is not.
+//   - A metric slot neither coder used at all: excluded entirely, same as
+//     before.
+// Non-metric fields are untouched by this step.
+const METRIC_FIELD_PATTERN = /^Metric(\d+)-(.+)$/;
+const METRIC_IDENTITY_SUFFIXES = ['analysis type', 'category', 'type', 'assessment tool', 'truth'];
+const NO_COUNTERPART = '\x00NO_COUNTERPART\x00';   // forced-mismatch marker for an unmatched metric
+const BUCKET_MISSING = '\x00BUCKET_MISSING\x00';   // "nothing here" bucket, within a matched metric
+
+function realignMetricRecords(records) {
+  const metricRecords = [];
+  const otherRecords = [];
+  records.forEach(r => (METRIC_FIELD_PATTERN.test(r.field) ? metricRecords : otherRecords).push(r));
+  if (!metricRecords.length) return records;
+
+  // Group metric records by (paper, rq)
+  const byUnit = new Map();
+  metricRecords.forEach(r => {
+    const key = `${r.paper}\x00${r.rq}`;
+    if (!byUnit.has(key)) byUnit.set(key, []);
+    byUnit.get(key).push(r);
+  });
+
+  const realigned = [];
+  byUnit.forEach(recs => {
+    const coders = [...new Set(recs.map(r => r.coder))];
+    const { paper, rq } = recs[0];
+
+    // Realignment only makes sense between exactly 2 coders. If this RQ has
+    // some other number, leave its metric fields as plain per-slot records.
+    if (coders.length !== 2) { realigned.push(...recs); return; }
+    const [c1, c2] = coders;
+
+    // metricNum -> suffix -> value, per coder
+    const byCoderMetric = { [c1]: new Map(), [c2]: new Map() };
+    recs.forEach(r => {
+      const m = r.field.match(METRIC_FIELD_PATTERN);
+      const num = m[1], suffix = m[2];
+      const cm = byCoderMetric[r.coder];
+      if (!cm.has(num)) cm.set(num, new Map());
+      cm.get(num).set(suffix, r.value);
+    });
+
+    const usedMetrics = coder => [...byCoderMetric[coder].entries()]
+      .filter(([, fields]) => [...fields.values()].some(v => v !== MISSING_SENTINEL))
+      .map(([num]) => num);
+    const nums1 = usedMetrics(c1);
+    const nums2 = usedMetrics(c2);
+
+    // Similarity score: count of identity fields that are equal AND both real
+    // (non-blank). Blank fields never contribute — a match has to be earned
+    // by shared real content, not by coincidental absence.
+    function score(n1, n2) {
+      const f1 = byCoderMetric[c1].get(n1), f2 = byCoderMetric[c2].get(n2);
+      let s = 0;
+      METRIC_IDENTITY_SUFFIXES.forEach(suf => {
+        const v1 = f1.get(suf), v2 = f2.get(suf);
+        if (v1 !== undefined && v2 !== undefined && v1 !== MISSING_SENTINEL && v2 !== MISSING_SENTINEL && v1 === v2) s++;
+      });
+      return s;
+    }
+
+    // Greedy max-weight bipartite matching — small n per RQ (usually ≤10
+    // metrics/side), so greedy-by-descending-score is a fine approximation
+    // of a true optimal assignment. Ties (including two metrics that share
+    // zero identity-field overlap) prefer same slot number: if both coders
+    // logged the same number of metrics but described them in completely
+    // different terms, Aaron still compares them slot-for-slot rather than
+    // calling them "unmatched" — confirmed against a real case where two
+    // coders' single metric shared no identity-field agreement at all, yet
+    // was scored as an ordinary (if total) mismatch, not a forced-absence
+    // disagreement. "Unmatched" is reserved for genuine count imbalance —
+    // a metric with literally no counterpart slot left on the other side —
+    // not for weak or absent content overlap.
+    const candidates = [];
+    nums1.forEach(n1 => nums2.forEach(n2 => {
+      candidates.push([n1, n2, score(n1, n2)]);
+    }));
+    candidates.sort((a, b) => (b[2] - a[2]) || ((a[0] === a[1] ? 0 : 1) - (b[0] === b[1] ? 0 : 1)));
+    const matchedC1 = new Set(), matchedC2 = new Set(), matches = [];
+    candidates.forEach(([n1, n2]) => {
+      if (matchedC1.has(n1) || matchedC2.has(n2)) return;
+      matchedC1.add(n1); matchedC2.add(n2);
+      matches.push([n1, n2]);
+    });
+
+    let matchIdx = 0;
+
+    // Matched metrics: compare sub-field by sub-field, blank/N/A/#VALUE!
+    // collapsed into one equivalence bucket on both sides.
+    matches.forEach(([n1, n2]) => {
+      matchIdx++;
+      const f1 = byCoderMetric[c1].get(n1), f2 = byCoderMetric[c2].get(n2);
+      f1.forEach((v1, suf) => {
+        const v2 = f2.get(suf);
+        if (v2 === undefined) return; // suffix not in this dataset's column set
+        const b1 = v1 === MISSING_SENTINEL ? BUCKET_MISSING : v1;
+        const b2 = v2 === MISSING_SENTINEL ? BUCKET_MISSING : v2;
+        const field = `MetricMatch${matchIdx}-${suf}`;
+        realigned.push({ paper, rq, field, coder: c1, value: b1 });
+        realigned.push({ paper, rq, field, coder: c2, value: b2 });
+      });
+    });
+
+    // Unmatched metrics: every sub-field forced to disagree against the
+    // other coder's total absence, regardless of its own content.
+    nums1.filter(n => !matchedC1.has(n)).forEach(n1 => {
+      matchIdx++;
+      byCoderMetric[c1].get(n1).forEach((v1, suf) => {
+        const field = `MetricMatch${matchIdx}-${suf}`;
+        realigned.push({ paper, rq, field, coder: c1, value: v1 });
+        realigned.push({ paper, rq, field, coder: c2, value: NO_COUNTERPART });
+      });
+    });
+    nums2.filter(n => !matchedC2.has(n)).forEach(n2 => {
+      matchIdx++;
+      byCoderMetric[c2].get(n2).forEach((v2, suf) => {
+        const field = `MetricMatch${matchIdx}-${suf}`;
+        realigned.push({ paper, rq, field, coder: c1, value: NO_COUNTERPART });
+        realigned.push({ paper, rq, field, coder: c2, value: v2 });
+      });
+    });
+
+    // Metrics used by neither coder simply never appear in nums1/nums2 —
+    // they produce no records at all, i.e. excluded from the calculation.
+  });
+
+  return [...otherRecords, ...realigned];
+}
+
+// ═══════════════════════════════════════════
 // IRR MATH — pooled coincidence matrix
 // ═══════════════════════════════════════════
-function avg(arr) { return arr.reduce((a,b) => a+b, 0)/arr.length; }
 
-// Core pooled Krippendorff's alpha (nominal)
-// records: [{paper, rq, field, coder, value}]
-// filterFn: optional fn(record) => bool to restrict scope
-function krippendorffAlphaPooled(records, filterFn) {
-  // Group by (paper, rq, field) unit -> {coder -> value}
+// Group flat records into units keyed by (paper, rq, field) -> {coder: value}
+function groupIntoUnits(records) {
   const units = new Map();
-  const filtered = filterFn ? records.filter(filterFn) : records;
-
-  filtered.forEach(({paper, rq, field, coder, value}) => {
+  records.forEach(({paper, rq, field, coder, value}) => {
     const key = `${paper}\x00${rq}\x00${field}`;
     if (!units.has(key)) units.set(key, {});
     units.get(key)[coder] = value;
   });
 
+  // Percent-vs-decimal equivalence: for numeric fields, a value entered as a
+  // percentage point by one coder and the same quantity as a decimal fraction
+  // by the other (e.g. 3.89 vs. 0.0389) should compare as equal. Confirmed
+  // against Aaron's own designation rows on the 6/18 sheet — he scores these
+  // as agreement, not disagreement. Only applies within a single unit (two
+  // coders describing the same thing), never across units.
+  units.forEach((coderMap, key) => {
+    const field = key.split('\x00')[2];
+    if (!isNumericCol(field)) return;
+    const entries = Object.entries(coderMap)
+      .map(([coder, v]) => [coder, parseFloat(v)])
+      .filter(([, n]) => !isNaN(n) && n !== 0);
+    for (let i = 0; i < entries.length; i++) {
+      for (let j = i + 1; j < entries.length; j++) {
+        const [c1, n1] = entries[i], [c2, n2] = entries[j];
+        if (coderMap[c1] === coderMap[c2]) continue; // already equal
+        const ratio = n1 / n2;
+        if (Math.abs(ratio - 100) < 0.5 || Math.abs(ratio - 0.01) < 0.00005) {
+          coderMap[c2] = coderMap[c1]; // canonicalize to the same value
+        }
+      }
+    }
+  });
+
+  // Drop units where every coder left the field blank — e.g. a metric slot
+  // that simply doesn't apply to this paper. Nothing was coded by anyone, so
+  // there's nothing to agree or disagree on. Units where at least one coder
+  // filled it in are kept as-is (including any MISSING_SENTINEL entries),
+  // so a blank-vs-filled split still counts as a disagreement.
+  units.forEach((coderMap, key) => {
+    if (Object.values(coderMap).every(v => v === MISSING_SENTINEL)) units.delete(key);
+  });
+  return units;
+}
+
+// Recode each unit's values into codes that are unique to that unit only —
+// never reused by any other unit. Coders who agree within a unit still share
+// a code; coders who disagree get distinct codes. This mirrors the recoding
+// Aaron performs by hand before running his R script: it leaves the observed
+// within-unit agreement/disagreement identical to the raw-value method, but
+// prevents a literal answer that happens to repeat across many unrelated
+// units (e.g. "Yes", or a common dropdown option) from being treated as one
+// big shared category when estimating chance agreement. Validated against
+// Aaron's manually-calculated alpha on the 6/18 dataset (see methodology note).
+function recodeUnitsUniquely(units) {
+  const recoded = new Map();
+  let counter = 0;
+  units.forEach((coderMap, key) => {
+    const localMap = new Map(); // literal value -> unique code, local to this unit
+    const newCoderMap = {};
+    Object.entries(coderMap).forEach(([coder, value]) => {
+      if (!localMap.has(value)) { counter++; localMap.set(value, counter); }
+      newCoderMap[coder] = localMap.get(value);
+    });
+    recoded.set(key, newCoderMap);
+  });
+  return recoded;
+}
+
+// Core Krippendorff's alpha (nominal) computed from an already-grouped unit map
+function alphaFromUnits(units) {
   // Build coincidence matrix
   const coinc = new Map(); // "va\x00vb" -> count
   const mu = new Map();    // value -> marginal count
@@ -1475,142 +1700,24 @@ function krippendorffAlphaPooled(records, filterFn) {
   return 1 - Do / De;
 }
 
-// Pairwise % agreement from records
-function pairwiseAgreementFromRecords(records, filterFn) {
+// Krippendorff's alpha via unique-per-unit recoding — matches Aaron's
+// validated hand/R method. Before computing alpha, every (Paper, RQ, Field)
+// unit is recoded so each unit gets codes unique to itself (matches share a
+// code, mismatches get distinct codes, but no code is ever reused across
+// units). This is necessary rather than pooling literal field values as
+// categories, since a literal answer that happens to repeat across many
+// unrelated units (e.g. "Yes", or a common dropdown option) would otherwise
+// be treated as one shared category when estimating chance agreement.
+// records: [{paper, rq, field, coder, value}]
+// filterFn: optional fn(record) => bool to restrict scope
+function krippendorffAlpha(records, filterFn) {
   const filtered = filterFn ? records.filter(filterFn) : records;
-  // Group by unit
-  const units = new Map();
-  filtered.forEach(({paper, rq, field, coder, value}) => {
-    const key = `${paper}\x00${rq}\x00${field}`;
-    if (!units.has(key)) units.set(key, {});
-    units.get(key)[coder] = value;
-  });
-
-  const pairs = [];
-  units.forEach(coderMap => {
-    const entries = Object.entries(coderMap);
-    for (let i = 0; i < entries.length; i++) {
-      for (let j = i+1; j < entries.length; j++) {
-        pairs.push(entries[i][1] === entries[j][1] ? 1 : 0);
-      }
-    }
-  });
-  return pairs.length ? avg(pairs) : null;
-}
-
-// Cohen's kappa from records (exactly 2 coders)
-function cohensKappaFromRecords(records, filterFn, coders) {
-  if (coders.length !== 2) return null;
-  const [c1, c2] = coders;
-  const filtered = filterFn ? records.filter(filterFn) : records;
-
-  const units = new Map();
-  filtered.forEach(({paper, rq, field, coder, value}) => {
-    const key = `${paper}\x00${rq}\x00${field}`;
-    if (!units.has(key)) units.set(key, {});
-    units.get(key)[coder] = value;
-  });
-
-  const pairs = [];
-  units.forEach(coderMap => {
-    const a = coderMap[c1], b = coderMap[c2];
-    if (a !== undefined && b !== undefined) pairs.push([a, b]);
-  });
-  if (!pairs.length) return null;
-
-  const N = pairs.length;
-  const cats = [...new Set(pairs.flat())];
-  const po = pairs.filter(([a,b]) => a === b).length / N;
-  let pe = 0;
-  cats.forEach(c => {
-    const pa = pairs.filter(([a]) => a === c).length / N;
-    const pb = pairs.filter(([,b]) => b === c).length / N;
-    pe += pa * pb;
-  });
-  return pe >= 1 ? 1 : (po - pe) / (1 - pe);
-}
-
-// Fleiss' kappa from records (3+ coders)
-function fleissKappaFromRecords(records, filterFn) {
-  const filtered = filterFn ? records.filter(filterFn) : records;
-  const units = new Map();
-  filtered.forEach(({paper, rq, field, coder, value}) => {
-    const key = `${paper}\x00${rq}\x00${field}`;
-    if (!units.has(key)) units.set(key, {});
-    units.get(key)[coder] = value;
-  });
-
-  const unitArr = [...units.values()].filter(m => Object.keys(m).length >= 2);
-  if (!unitArr.length) return null;
-
-  const cats = [...new Set(unitArr.flatMap(m => Object.values(m)))];
-
-  const nij = unitArr.map(m => {
-    const counts = Object.fromEntries(cats.map(c => [c, 0]));
-    Object.values(m).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
-    return counts;
-  });
-  const ni = nij.map(row => Object.values(row).reduce((a,b) => a+b, 0));
-  const N = ni.reduce((a,b) => a+b, 0);
-  if (!N) return null;
-
-  const Pi = nij.map((row, i) => {
-    const t = ni[i]; if (t <= 1) return 0;
-    return cats.reduce((acc, c) => acc + row[c]*(row[c]-1), 0) / (t*(t-1));
-  });
-  const Pbar = avg(Pi);
-  const Pj = cats.map(c => nij.reduce((acc, row) => acc + row[c], 0) / N);
-  const Pe = Pj.reduce((acc, p) => acc + p*p, 0);
-  return Pe >= 1 ? 1 : (Pbar - Pe) / (1 - Pe);
-}
-
-// Unified entry point — dispatches to the correct pooled function
-function calcMetricFromRecords(metric, records, filterFn, coders) {
-  if (metric === 'alpha')    return krippendorffAlphaPooled(records, filterFn);
-  if (metric === 'pairwise') return pairwiseAgreementFromRecords(records, filterFn);
-  if (metric === 'cohen')    return cohensKappaFromRecords(records, filterFn, coders);
-  if (metric === 'fleiss')   return fleissKappaFromRecords(records, filterFn);
-  return null;
-}
-
-// Keep old matrix-based helpers for legacy use in pairwise detail table
-function pairwiseAgreement(matrix) {
-  const n = matrix[0].length;
-  const pairs = [];
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = i+1; j < matrix.length; j++) {
-      let agree = 0, total = 0;
-      for (let k = 0; k < n; k++) {
-        const a = matrix[i][k], b = matrix[j][k];
-        if (a !== null && b !== null) { total++; if (String(a) === String(b)) agree++; }
-      }
-      if (total > 0) pairs.push(agree/total);
-    }
-  }
-  return pairs.length ? avg(pairs) : null;
-}
-
-function parseVal(v) { const n=Number(v); return isNaN(n)?String(v):n; }
-
-function delta(vk,vl,dataType,allVals) {
-  if (String(vk)===String(vl)) return 0;
-  if (dataType==='nominal') return 1;
-  if (dataType==='ordinal') {
-    const ki=allVals.indexOf(vk),li=allVals.indexOf(vl);
-    if (ki===-1||li===-1) return 1;
-    return Math.pow(Math.abs(ki-li),2);
-  }
-  const nk=Number(vk),nl=Number(vl);
-  return (isNaN(nk)||isNaN(nl)) ? 1 : Math.pow(nk-nl,2);
+  return alphaFromUnits(recodeUnitsUniquely(groupIntoUnits(filtered)));
 }
 
 // ═══════════════════════════════════════════
 // DISPLAY
 // ═══════════════════════════════════════════
-const METRIC_LABELS = {
-  alpha:"Krippendorff's α", pairwise:'Pairwise %', cohen:"Cohen's κ", fleiss:"Fleiss' κ"
-};
-
 function fmtVal(v, isP) {
   if (v===null||v===undefined) return '<span class="val-na">—</span>';
   const n = isP ? v*100 : v;
@@ -1623,7 +1730,7 @@ function scoreInterp(v) {
   return v>=0.8?'● Strong':v>=0.6?'◐ Moderate':'○ Low';
 }
 
-function showResults(res, errors, warnings) {
+function showResults(res, errors) {
   const area = document.getElementById('resultsArea');
   document.getElementById('emptyState').classList.add('hidden');
   area.classList.remove('hidden');
@@ -1632,20 +1739,18 @@ function showResults(res, errors, warnings) {
   errors.forEach(e => area.innerHTML += banner('error','✖',e));
   if (!res) return;
 
-  const {overallAlpha, pairs, pairResults, pairPaperResults, pairPaperRQResults,
+  const {overallAlpha, pairs,
+         pairResults,
+         pairPaperResults,
+         pairPaperRQResults,
          paperNums, paperNumToRQs, paperGroupTitle, paperGroupTitleFull,
          rqLabelMap, rqLabelFull,
-         cols, papers, coders, metrics, metricErrors, metricWarnings,
+         cols, papers, coders,
          allRecords, freetextSelected} = res;
-
-  metrics.forEach(m => {
-    metricErrors[m].forEach(e => area.innerHTML += banner('error','✖',`<strong>${METRIC_LABELS[m]}:</strong> ${e}`));
-    metricWarnings[m].forEach(w => area.innerHTML += banner('warn','⚠',`<strong>${METRIC_LABELS[m]}:</strong> ${w}`));
-  });
 
   if (freetextSelected && freetextSelected.length > 0) {
     area.innerHTML += banner('warn','⚠',
-      `<strong>${freetextSelected.length} free-text field${freetextSelected.length>1?'s':''} included:</strong> ${freetextSelected.join(', ')}. These use exact-string matching and may deflate IRR. The reference Python script excludes them by default.`
+      `<strong>${freetextSelected.length} free-text field${freetextSelected.length>1?'s':''} included:</strong> ${freetextSelected.join(', ')}. These use exact-string matching and may deflate IRR.`
     );
   }
 
@@ -1657,7 +1762,7 @@ function showResults(res, errors, warnings) {
   hdr.className = 'results-header';
   hdr.innerHTML = `
     <div>
-      <div class="results-title">IRR Results <span class="info-tooltip">ℹ<span class="tooltip-body"><strong>Methodology note</strong><br>Krippendorff\'s Alpha uses a <strong>pooled coincidence matrix</strong> across all (Paper, RQ, Field) units — one alpha per scope, not an average of per-column alphas. Numeric values are normalized (85 == 85.0), multiselect cells compared order-independently. Free-text fields may deflate alpha if included. Validated against compute_irr.py.</span></span></div>
+      <div class="results-title">IRR Results <span class="info-tooltip">ℹ<span class="tooltip-body"><strong>Methodology note</strong><br>Krippendorff's α is computed by recoding every (Paper, RQ, Field) unit so each unit gets codes unique to itself (matches share a code, mismatches get distinct codes, but no code is ever reused across units) — this matches Aaron's validated hand/R method. Metric fields are realigned by content before comparison (not by slot position), a metric with no counterpart on the other side counts as a full disagreement, and blank/N/A/#VALUE! are treated as one equivalent "nothing here" bucket. <strong>Overall is the simple average of the per-pair α figures below</strong> — each coder pair counts equally, regardless of how many RQs it contributed. Numeric values are normalized (85 == 85.0), multiselect cells compared order-independently. Free-text fields may deflate alpha if included.</span></span></div>
       <div class="results-meta">${vName ? vName+' · ' : ''}${papers.length} RQs · ${cols.length} variables · ${coders.length} coders · ${ts}</div>
     </div>
     <div class="export-btns">
@@ -1769,7 +1874,8 @@ function showResults(res, errors, warnings) {
       <td class="pair-expand-cell" colspan="2">
         <div style="background:var(--surface2);">
           <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;">
-            <tbody>${paperRows}</tbody>
+            <tbody>${paperRows}</tbody
+>
           </table>
         </div>
       </td>
@@ -1820,7 +1926,10 @@ function banner(type,icon,msg) {
 // ═══════════════════════════════════════════
 function exportCSV() {
   if (!lastResults) return;
-  const {overallAlpha, pairs, pairResults, pairPaperResults, pairPaperRQResults,
+  const {overallAlpha, pairs,
+         pairResults,
+         pairPaperResults,
+         pairPaperRQResults,
          paperNums, paperNumToRQs, paperGroupTitleFull, rqLabelFull} = lastResults;
   const pk = (c1,c2) => `${c1} × ${c2}`;
   const fmt = v => v !== null ? v.toFixed(4) : 'N/A';
@@ -1859,7 +1968,10 @@ function exportCSV() {
 
 function exportXLSX() {
   if (!lastResults) return;
-  const {overallAlpha, pairs, pairResults, pairPaperResults, pairPaperRQResults,
+  const {overallAlpha, pairs,
+         pairResults,
+         pairPaperResults,
+         pairPaperRQResults,
          paperNums, paperNumToRQs, paperGroupTitleFull, rqLabelFull} = lastResults;
   const pk = (c1,c2) => `${c1} × ${c2}`;
   const fmt = v => v !== null ? parseFloat(v.toFixed(4)) : 'N/A';
@@ -1875,7 +1987,8 @@ function exportXLSX() {
   // ── BY CODER PAIR summary ──
   wsData.push(['BY CODER PAIR', "Krippendorff's α"]);
   pairs.forEach(([c1,c2]) => {
-    wsData.push([pk(c1,c2), fmt(pairResults[pk(c1,c2)])]);
+    const key = pk(c1,c2);
+    wsData.push([key, fmt(pairResults[key])]);
   });
   wsData.push([]);
 
@@ -1898,7 +2011,7 @@ function exportXLSX() {
   });
 
   const ws = XLSX.utils.aoa_to_sheet(wsData);
-  ws['!cols'] = [{ wch: 28 }, { wch: 60 }, { wch: 20 }];
+  ws['!cols'] = [{ wch: 28 }, { wch: 60 }, { wch: 16 }];
 
   const range = XLSX.utils.decode_range(ws['!ref']);
   for (let R = range.s.r; R <= range.e.r; R++) {
