@@ -518,13 +518,13 @@
           </div>
           <span class="version-badge">Active</span>
         </div>
-        <div class="version-card disabled" data-version="ff" id="card-ff">
+        <div class="version-card" data-version="ff" id="card-ff">
           <div class="version-dot"></div>
           <div>
             <div class="version-name">Formative Feedback</div>
-            <div class="version-sub">Not yet available</div>
+            <div class="version-sub">Auto-selects IRR columns</div>
           </div>
-          <span class="version-badge">Soon</span>
+          <span class="version-badge">Active</span>
         </div>
       </div>
       <div class="detect-banner" id="detectBanner">
@@ -710,7 +710,15 @@ const SHEET_VERSIONS = {
     // -- it's still treated as free text here (paraphrase-prone narrative,
     // same reasoning as the other excluded description fields), which is
     // worth flagging back to Aaron rather than silently deciding either way.
-    signature: ['Metric1-analysis type','Metric1-category','Bias / Fairness Type'],
+    // NOTE: 'Metric1-analysis type' / 'Metric1-category' / 'Bias / Fairness Type'
+    // are shared verbatim with Item Generation's signature, so on their own they
+    // can never win a tie against IG (detectVersion keeps the first equal-scoring
+    // match, and 'ig' is declared first). 'Feedback usage reported' is added here
+    // as an FF-only tiebreaker column (from the FF Feature Descriptions doc,
+    // Research Question Design section) — unconfirmed whether this column name
+    // is guaranteed absent from real IG/AS exports, so double-check this still
+    // auto-detects correctly the next time an actual FF sheet is uploaded.
+    signature: ['Metric1-analysis type','Metric1-category','Bias / Fairness Type','Feedback usage reported'],
     cols: [
       'Domain',
       'AI Innovation',
@@ -1013,17 +1021,15 @@ function renderVersionCards(detectedKey) {
   ['as','ig','ff'].forEach(k => {
     const card = document.getElementById(`card-${k}`);
     card.classList.remove('active');
-    if (k !== 'ff') {
-      card.onclick = () => {
-        activeVersion = k;
-        renderVersionCards(null);
-        card.classList.add('active');
-        applyVersionAndRebuild(k);
-      };
-    }
+    card.onclick = () => {
+      activeVersion = k;
+      renderVersionCards(null);
+      card.classList.add('active');
+      applyVersionAndRebuild(k);
+    };
   });
 
-  if (detectedKey && detectedKey !== 'ff') {
+  if (detectedKey) {
     document.getElementById(`card-${detectedKey}`).classList.add('active');
     const banner = document.getElementById('detectBanner');
     const msg = document.getElementById('detectMsg');
