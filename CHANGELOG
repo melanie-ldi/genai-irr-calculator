@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-02 — Formative Feedback enabled in the UI, IG/FF auto-detect tiebreak
+
+Confirmed the 191-field Formative Feedback column definition (added 2026-07-15) against a fresh copy of the domain's Feature Descriptions template — exact match, no additions or removals needed. However, the UI itself still had the Formative Feedback option locked out from before that column definition existed, which meant the completed backend was unreachable.
+
+### Fixed
+- **Formative Feedback card was hardcoded disabled.** The version-selector card carried a `disabled` class with a "Soon" badge and "Not yet available" subtitle left over from before the FF column definition was populated. Card is now active like Automated Scoring and Item Generation.
+- **Formative Feedback couldn't be selected at all.** `renderVersionCards()` only attached a click handler to the Automated Scoring and Item Generation cards (`if (k !== 'ff')`), so clicking the FF card did nothing even once its `disabled` styling was removed. Now attaches to all three.
+- **Auto-detection could never surface Formative Feedback, even after the above fixes.** Item Generation and Formative Feedback had byte-identical `signature` arrays (`Metric1-analysis type`, `Metric1-category`, `Bias / Fairness Type`). `detectVersion` keeps the first version to reach the top score on ties, and `ig` is declared before `ff` in `SHEET_VERSIONS`, so any FF sheet would have silently auto-detected as Item Generation. Added `Feedback usage reported` — a Formative-Feedback-only column from the domain's Feature Descriptions template (Research Question Design section, not itself used for IRR) — to FF's signature as a tiebreaker. Unconfirmed whether this column name is guaranteed absent from real Automated Scoring / Item Generation exports; worth checking the auto-detect banner the next time an actual FF sheet is uploaded.
+
 ## 2026-07-15 — Multi-round validation, metric-matching fix, schema updates for two more domains
 
 Validated the tool against a second, independent round of real coding data (7/15/2026, five coder pairs) using Aaron's actual cell highlighting as ground truth, the same method used to validate the previous release. That process surfaced one more real algorithm bug and several coding-scheme schema updates.
